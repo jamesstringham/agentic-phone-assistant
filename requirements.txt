@@ -1,0 +1,12 @@
+openai
+python-dotenv
+fastapi
+uvicorn[standard]
+twilio
+azure-cognitiveservices-speech
+python-multipart
+torch
+torchaudio
+numpy
+packaging
+langgraph

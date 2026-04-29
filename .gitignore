@@ -1,0 +1,36 @@
+# Python
+app/*/__pycache__/
+app/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Logs / cache
+*.log
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Audio/debug artifacts
+*.wav
+*.mp3
+*.pcm
+*.raw
+*.mulaw
+
+# Local tunnels / deployment
+.ngrok*
