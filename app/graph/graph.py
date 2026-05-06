@@ -35,8 +35,6 @@ def business_info_agent(state: CallState) -> CallState:
 
     result = business_info_specialist.run(state)
 
-    print(f"[AGENT] business_info → {result.get('assistant_message')}")
-
     return {
         **state,
         **result,
@@ -48,8 +46,6 @@ def schedule_agent(state: CallState) -> CallState:
 
     result = schedule_specialist.run(state)
 
-
-    print(f"[AGENT] schedule → {result.get('assistant_message')}")
     print(f"[STATE UPDATE] name={result.get('caller_name')} "
           f"service={result.get('requested_service')} "
           f"date={result.get('appointment_date')} "
@@ -64,7 +60,6 @@ def schedule_agent(state: CallState) -> CallState:
 def modify_agent(state: CallState) -> CallState:
     print("[NODE] modify_agent")
     result = modify_specialist.run(state)
-    print(f"[AGENT] modify → {result.get('assistant_message')}")
     return {
         **state,
         **result,
@@ -75,7 +70,6 @@ def modify_agent(state: CallState) -> CallState:
 def cancel_agent(state: CallState) -> CallState:
     print("[NODE] cancel_agent")
     result = cancel_specialist.run(state)
-    print(f"[AGENT] cancel → {result.get('assistant_message')}")
     return {
         **state,
         **result,
@@ -85,7 +79,6 @@ def cancel_agent(state: CallState) -> CallState:
 def lead_agent(state: CallState) -> CallState:
     print("[NODE] lead_agent")
     result = lead_specialist.run(state)
-    print(f"[AGENT] lead → {result.get('assistant_message')}")
     return {
         **state,
         **result,
@@ -95,7 +88,6 @@ def lead_agent(state: CallState) -> CallState:
 def escalation_agent(state: CallState) -> CallState:
     print("[NODE] escalation_agent")
     result = escalation_specialist.run(state)
-    print(f"[AGENT] escalation → {result.get('assistant_message')}")
     return {
         **state,
         **result,
@@ -107,7 +99,6 @@ def confirmation_agent(state: CallState) -> CallState:
 
     result = confirmation_specialist.run(state)
 
-    print(f"[AGENT] confirmation → {result.get('assistant_message')}")
     print(f"[CONFIRMATION UPDATE] type={result.get('confirmation_type')} "
           f"needs_confirmation={result.get('needs_confirmation')}")
 

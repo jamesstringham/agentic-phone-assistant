@@ -83,6 +83,7 @@ app/
 - Azure Speech (STT + TTS)
 - LangGraph
 - PyTorch (Silero VAD)
+- ChromaDB (RAG)
 - WebSockets
 
 ---
@@ -94,10 +95,20 @@ pip install -r requirements.txt
 
 2. Configure environment variables using `.env.example`
 
-3. Start the server  
-uvicorn app.main:app --reload
+3. Build the rag index
+python -m app.rag.build_index
 
-4. Connect Twilio webhook to `/voice` and media stream to `/ws/media`
+4. Establish a devtunnel connection
+devtunnel host -p 8000 --allow-anonymous
+
+5. Paste the devtunnel link into `PUBLIC_BASE_URL` in `.env`
+
+6. Configure your Twilio webhook to be PUBLIC_BASE_URL/voice
+
+7. Start the server  
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+8. Call your Twilio number
 
 ---
 
