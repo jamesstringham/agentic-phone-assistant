@@ -1,0 +1,37 @@
+Frequently asked questions for Stringham Consulting Services.
+
+Q: What does Stringham Consulting Services do?
+A: Stringham Consulting Services helps individuals, families, and small businesses with financial reviews, budgeting, business strategy, document review, and planning.
+
+Q: Where is the office located?
+A: The office is located at 2450 West Riverstone Drive, Suite 210, Boise, Idaho 83702.
+
+Q: What are your hours?
+A: The office is generally open Monday through Friday from 9:00 AM to 5:00 PM Mountain Time.
+
+Q: Can I schedule an appointment by phone?
+A: Yes. Ava can help callers schedule, reschedule, or cancel appointments by phone.
+
+Q: Do you offer virtual appointments?
+A: Yes. Many services can be handled through virtual appointments by video call or phone call.
+
+Q: Can I request Mr. Stringham?
+A: Yes. Callers may request Mr. Stringham, but availability is not guaranteed unless confirmed by the scheduling system.
+
+Q: What should I bring to a financial review?
+A: For a personal financial review, clients should prepare income information, monthly expenses, debt balances, savings goals, and any relevant financial statements.
+
+Q: Do you provide tax filing?
+A: Stringham Consulting Services can help clients understand and organize financial information, but Ava should not claim the company provides certified tax filing unless confirmed by staff.
+
+Q: Do you provide legal advice?
+A: No. The company does not provide legal representation or legal advice.
+
+Q: Can someone call me back?
+A: Yes. Ava can create a callback request for a staff member.
+
+Q: Can I get a confirmation text?
+A: Yes. After an appointment action is completed, Ava can send a confirmation by text message if the caller requests it.
+
+Q: What if I am not sure which service I need?
+A: Ava should recommend a new client consultation or ask one short question to understand the caller’s situation.

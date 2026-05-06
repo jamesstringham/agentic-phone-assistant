@@ -1,0 +1,45 @@
+Stringham Consulting Services offers the following services.
+
+1. Personal Financial Review
+A personal financial review helps individuals or families understand their current financial situation. This may include reviewing income, expenses, budgeting habits, debt, savings goals, and financial priorities. Clients often choose this service when they want a clearer picture of their finances or need help creating a realistic plan.
+
+Typical appointment length: 45 minutes
+Best for: individuals, families, recent graduates, people preparing for large expenses
+Common preparation: recent budget, pay stubs, debt information, savings goals
+
+2. Small Business Financial Review
+This service helps small business owners understand revenue, expenses, profit margins, cash flow, and financial reports. The consultant may help the client identify areas where the business is overspending, undercharging, or missing opportunities.
+
+Typical appointment length: 60 minutes
+Best for: small business owners, freelancers, contractors, entrepreneurs
+Common preparation: income statements, expense records, bookkeeping exports, recent invoices
+
+3. Business Strategy Consultation
+A strategy consultation focuses on planning, operations, growth, and decision-making. This may include reviewing business goals, customer segments, internal processes, pricing strategy, hiring needs, and expansion plans.
+
+Typical appointment length: 60 minutes
+Best for: business owners, startup founders, managers
+Common preparation: business goals, current challenges, rough financial overview
+
+4. Budget Planning Session
+A budget planning session helps clients create or improve a personal or business budget. The goal is to build a realistic plan that can be followed consistently.
+
+Typical appointment length: 30 to 45 minutes
+Best for: individuals, families, new business owners
+Common preparation: monthly income, recurring bills, spending categories
+
+5. Document Review Session
+A document review session helps clients understand financial or business documents. This may include reports, spreadsheets, invoices, summaries, or planning documents. The consultant explains what the documents mean and helps identify questions or next steps.
+
+Typical appointment length: 30 minutes
+Best for: clients who need help understanding records before making decisions
+Common preparation: documents to review
+
+6. New Client Consultation
+A new client consultation is an introductory meeting for people who are not sure which service they need. The consultant learns about the caller’s situation and recommends the best next step.
+
+Typical appointment length: 30 minutes
+Best for: new callers, uncertain clients, general inquiries
+Common preparation: short summary of the issue or goal
+
+If a caller is unsure which service they need, Ava should recommend a new client consultation or ask one brief clarifying question.
