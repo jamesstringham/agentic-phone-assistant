@@ -4,8 +4,6 @@ This project is a real-time AI phone assistant that handles live phone calls, un
 
 It integrates telephony, speech processing, and LLM-based decision making into a single system capable of managing tasks like appointment scheduling and general inquiries.
 
-This project is currently under active development, with ongoing work focused on retrieval-augmented generation (RAG) and expanded multi-agent capabilities.
-
 ---
 
 ## Overview
@@ -54,7 +52,7 @@ The system connects a live phone call to an AI agent pipeline:
 The agent system is built using a graph-based architecture:
 
 - Router Agent: Determines intent and routes requests
-- Specialist Agents: Handle specific tasks like scheduling
+- Specialist Agents: Handle specific tasks like scheduling, business info, etc.
 - State Management: Maintains conversation context
 - LangGraph Workflow: Controls routing and execution
 
@@ -122,11 +120,11 @@ Functional prototype supporting:
 
 ---
 
-## In Progress
+## Future Development
 
-- Retrieval-Augmented Generation (RAG)
-- Additional specialist agents
 - Persistent memory
+- Real DB integration to make tool calls meaningful
+- SMS/Email configuration for confirmaiton_agent
 - Performance improvements
 
 ---
