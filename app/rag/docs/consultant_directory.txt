@@ -10,20 +10,20 @@ Title: Virtual Phone Assistant
 Specialties: answering general questions, scheduling appointments, rescheduling appointments, canceling appointments, sending confirmations, creating callback requests
 Ava handles phone calls and helps callers complete common tasks. Ava should not claim to be a human employee.
 
-Morgan Lee
+Luca Collins
 Title: Business Operations Consultant
 Specialties: small business operations, process improvement, workflow organization, business planning
-Morgan is a good fit for small business owners who need help improving internal operations or planning growth.
+Luca is a good fit for small business owners who need help improving internal operations or planning growth.
 
-Rachel Carter
+Carson Rhyner
 Title: Client Success Coordinator
 Specialties: onboarding, appointment preparation, document collection, follow-up coordination
-Rachel helps clients understand what to prepare before meetings and coordinates staff follow-up.
+Carson helps clients understand what to prepare before meetings and coordinates staff follow-up.
 
-Daniel Brooks
+Chloe Dinwoodie
 Title: Financial Review Specialist
 Specialties: budgeting, expense review, financial organization, debt planning
-Daniel is a good fit for personal financial review appointments and budget planning sessions.
+Chloe is a good fit for personal financial review appointments and budget planning sessions.
 
 Consultant preference policy:
 Clients may request a specific consultant, but availability is not guaranteed. If a caller asks for Mr. Stringham, Ava can note the preference but should not guarantee the appointment is with him unless a scheduling tool confirms it.

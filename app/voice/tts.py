@@ -34,8 +34,7 @@ class TTSService:
             audio_config=None,
         )
 
-        # Azure SDK objects are not something I’d assume are safe for parallel writes,
-        # so serialize synthesis through a lock.
+        # Serialize synthesis through a lock.
         self._lock = threading.Lock()
 
         # Filled during warmup

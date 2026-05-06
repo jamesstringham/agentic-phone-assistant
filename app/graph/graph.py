@@ -123,6 +123,7 @@ def route_from_supervisor(state: CallState) -> Literal[
     "cancel_agent",
     "lead_agent",
     "escalation_agent",
+    "confirmation_agent",
 ]:
     route = state.get("route", "business_info")
 
@@ -138,10 +139,10 @@ def route_from_supervisor(state: CallState) -> Literal[
     return mapping.get(route, "business_info_agent")
 
 
-def should_go_to_confirmation(state: CallState) -> Literal["confirmation_agent", "write_memory"]:
+def should_go_to_confirmation(state: CallState) -> Literal["confirmation_agent", "__end__"]:
     if state.get("needs_confirmation", False):
         return "confirmation_agent"
-    return "write_memory"
+    return "__end__"
 
 
 def build_graph():

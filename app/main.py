@@ -3,7 +3,6 @@ from fastapi.responses import Response, JSONResponse
 from twilio.twiml.voice_response import VoiceResponse, Connect
 
 from app.config import settings
-from app.agents.conversation_agent import ConversationAgent
 from app.voice.stt import STTService
 from app.voice.tts import TTSService
 from app.voice.twilio_media import handle_twilio_media_socket
@@ -15,7 +14,6 @@ app = FastAPI()
 
 @app.on_event("startup")
 async def startup():
-    app.state.conversation_agent = ConversationAgent()
     app.state.stt_service = STTService()
     app.state.tts_service = TTSService()
     app.state.call_graph = build_graph()
@@ -60,7 +58,6 @@ async def twilio_status(request: Request):
 async def media_ws(websocket: WebSocket):
     await handle_twilio_media_socket(
         websocket=websocket,
-        conversation_agent=app.state.conversation_agent,
         stt_service=app.state.stt_service,
         tts_service=app.state.tts_service,
         call_graph=app.state.call_graph,

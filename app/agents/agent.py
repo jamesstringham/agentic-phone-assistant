@@ -26,18 +26,14 @@ class SpecialistAgent:
         state_view = {
             "session_id": state.get("session_id"),
             "caller_phone": state.get("caller_phone"),
-            "caller_name": state.get("caller_name"),
-            "known_customer": state.get("known_customer"),
-            "intent": state.get("intent"),
             "route": state.get("route"),
+            "caller_name": state.get("caller_name"),
             "requested_service": state.get("requested_service"),
-            "requested_consultant": state.get("requested_consultant"),
             "appointment_id": state.get("appointment_id"),
             "appointment_date": state.get("appointment_date"),
-            "appointment_time": state.get("appointment_time"),
-            "appointment_mode": state.get("appointment_mode"),
+            "needs_confirmation": state.get("needs_confirmation"),
+            "phone": state.get("phone"),
             "confirmation_type": state.get("confirmation_type"),
-            "memory_summary": state.get("memory_summary"),
         }
 
         user_message = state.get("user_message", "")
@@ -146,17 +142,15 @@ class SpecialistAgent:
 
         allowed_fields = [
             "assistant_message",
-            "caller_name",
-            "intent",
             "route",
+            "caller_name",
             "requested_service",
-            "requested_consultant",
             "appointment_id",
             "appointment_date",
             "appointment_time",
-            "appointment_mode",
-            "confirmation_type",
             "needs_confirmation",
+            "phone",
+            "confirmation_type",
             "end_call",
         ]
 

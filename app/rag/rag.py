@@ -78,9 +78,6 @@ class StringhamRAG:
     ) -> list[str]:
         """
         Simple character-based chunking.
-
-        Good enough for your current docs because they are short, structured,
-        and paragraph-heavy.
         """
         text = " ".join(text.split())
         if len(text) <= chunk_size:
@@ -106,10 +103,6 @@ class StringhamRAG:
         return chunks
 
     def rebuild_index(self) -> dict[str, Any]:
-        """
-        Rebuild the Chroma collection from scratch.
-        Use this whenever you edit the docs.
-        """
         try:
             self.chroma_client.delete_collection(self.collection_name)
         except Exception:

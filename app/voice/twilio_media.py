@@ -6,7 +6,6 @@ import re
 from io import BytesIO
 import wave
 from fastapi import WebSocket, WebSocketDisconnect
-from app.prompts.welcome_ssml import WELCOME_SSML
 from app.voice.vad import SileroVADState
 
 call_states = {}
@@ -237,7 +236,6 @@ class SentenceChunker:
 
 async def handle_twilio_media_socket(
     websocket: WebSocket,
-    conversation_agent,
     stt_service,
     tts_service,
     call_graph,

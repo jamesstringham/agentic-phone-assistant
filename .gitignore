@@ -1,6 +1,7 @@
 # Python
 app/*/__pycache__/
 app/__pycache__/
+app/rag/chroma_db/
 *.pyc
 *.pyo
 *.pyd

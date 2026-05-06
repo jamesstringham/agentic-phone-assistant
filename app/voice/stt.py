@@ -1,7 +1,6 @@
 import azure.cognitiveservices.speech as speechsdk
 from app.config import settings
 
-
 class STTService:
     def __init__(self):
         if not settings.azure_speech_key or not settings.azure_speech_region:
