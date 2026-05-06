@@ -24,6 +24,8 @@ class Settings:
     azure_speech_region: str = os.getenv("AZURE_SPEECH_REGION", "")
     azure_speech_voice: str = os.getenv("AZURE_SPEECH_VOICE", "en-US-JennyNeural")
 
+    azure_openai_embedding_deployment: str | None = os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT")
+
     @property
     def voice_webhook_url(self) -> str:
         return f"{self.public_base_url}/voice"

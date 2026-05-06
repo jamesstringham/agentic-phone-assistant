@@ -61,6 +61,7 @@ class SpecialistAgent:
         max_tool_rounds = 5
 
         for _ in range(max_tool_rounds):
+            print(f"[SPECIALIST] {self.name} tools={[t['function']['name'] for t in self.tools_schema]}")
             response = self.chatlib.chat(
                 messages=messages,
                 tools=self.tools_schema if self.tools_schema else None,

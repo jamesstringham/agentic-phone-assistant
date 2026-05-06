@@ -374,7 +374,6 @@ async def handle_twilio_media_socket(
 
                         ready_sentences = chunker.push(assistant_text)
                         for sentence in ready_sentences:
-                            print(f"[ASSISTANT TEXT CHUNK] {sentence}")
                             mark_name = await send_tts_audio_to_twilio(
                                 websocket=websocket,
                                 stream_sid=stream_sid,
@@ -386,7 +385,6 @@ async def handle_twilio_media_socket(
 
                         remaining = chunker.flush()
                         if remaining:
-                            print(f"[ASSISTANT TEXT CHUNK] {remaining}")
                             mark_name = await send_tts_audio_to_twilio(
                                 websocket=websocket,
                                 stream_sid=stream_sid,

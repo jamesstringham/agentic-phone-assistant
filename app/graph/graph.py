@@ -3,17 +3,10 @@ from langgraph.graph import StateGraph, START, END
 
 from app.graph import router_agent
 from app.graph.state import CallState
-from app.graph.specialists import business_info_specialist, schedule_specialist
+from app.graph.specialists import business_info_specialist, schedule_specialist, confirmation_specialist, modify_specialist, cancel_specialist, lead_specialist, escalation_specialist
 from app.graph.router_agent import RouterAgent
 
 router_agent = RouterAgent()
-
-def load_caller_context(state: CallState) -> CallState:
-    return {
-        **state,
-        "known_customer": state.get("known_customer", False),
-    }
-
 
 def greet_and_route(state: CallState) -> CallState:
     print(f"[NODE] greet_and_route | user='{state.get('user_message')}'")
@@ -70,77 +63,58 @@ def schedule_agent(state: CallState) -> CallState:
 
 def modify_agent(state: CallState) -> CallState:
     print("[NODE] modify_agent")
-
-    answer = "I can help reschedule your appointment. What date or time would you like to change it to?"
+    result = modify_specialist.run(state)
+    print(f"[AGENT] modify → {result.get('assistant_message')}")
     return {
         **state,
-        "assistant_message": answer,
-        "needs_confirmation": False,
+        **result,
     }
+
 
 
 def cancel_agent(state: CallState) -> CallState:
     print("[NODE] cancel_agent")
-    answer = "I can help cancel that appointment. Can you confirm the appointment date or the name on the booking?"
+    result = cancel_specialist.run(state)
+    print(f"[AGENT] cancel → {result.get('assistant_message')}")
     return {
         **state,
-        "assistant_message": answer,
-        "needs_confirmation": False,
+        **result,
     }
 
 
 def lead_agent(state: CallState) -> CallState:
     print("[NODE] lead_agent")
-    answer = "I'd be happy to help with that. Can I get your name and the reason you're reaching out today?"
+    result = lead_specialist.run(state)
+    print(f"[AGENT] lead → {result.get('assistant_message')}")
     return {
         **state,
-        "assistant_message": answer,
-        "needs_confirmation": False,
+        **result,
     }
 
 
 def escalation_agent(state: CallState) -> CallState:
     print("[NODE] escalation_agent")
-    answer = "I can arrange a callback from a member of the team. What is the best number to reach you, and what is this regarding?"
+    result = escalation_specialist.run(state)
+    print(f"[AGENT] escalation → {result.get('assistant_message')}")
     return {
         **state,
-        "assistant_message": answer,
-        "needs_confirmation": False,
+        **result,
     }
 
 
 def confirmation_agent(state: CallState) -> CallState:
     print("[NODE] confirmation_agent")
-    confirmation_type = state.get("confirmation_type", "sms")
 
-    if confirmation_type == "sms":
-        answer = "I've sent a confirmation by text message."
-    else:
-        answer = "Your confirmation has been recorded."
+    result = confirmation_specialist.run(state)
 
-    return {
-        **state,
-        "assistant_message": answer,
-    }
-
-
-def write_memory(state: CallState) -> CallState:
-    summary = (
-        f"Caller={state.get('caller_name', 'unknown')}; "
-        f"route={state.get('route', 'unknown')}; "
-        f"service={state.get('requested_service', '')}; "
-        f"appointment_date={state.get('appointment_date', '')}; "
-        f"appointment_time={state.get('appointment_time', '')}"
-    )
-
-    # later:
-    # store_call_summary(phone=state["caller_phone"], summary=summary)
+    print(f"[AGENT] confirmation → {result.get('assistant_message')}")
+    print(f"[CONFIRMATION UPDATE] type={result.get('confirmation_type')} "
+          f"needs_confirmation={result.get('needs_confirmation')}")
 
     return {
         **state,
-        "memory_summary": summary,
+        **result,
     }
-
 
 def route_from_supervisor(state: CallState) -> Literal[
     "business_info_agent",
@@ -159,6 +133,7 @@ def route_from_supervisor(state: CallState) -> Literal[
         "cancel": "cancel_agent",
         "lead": "lead_agent",
         "escalate": "escalation_agent",
+        "confirmation": "confirmation_agent",
     }
     return mapping.get(route, "business_info_agent")
 
@@ -172,7 +147,6 @@ def should_go_to_confirmation(state: CallState) -> Literal["confirmation_agent",
 def build_graph():
     graph = StateGraph(CallState)
 
-    graph.add_node("load_caller_context", load_caller_context)
     graph.add_node("greet_and_route", greet_and_route)
     graph.add_node("business_info_agent", business_info_agent)
     graph.add_node("schedule_agent", schedule_agent)
@@ -181,24 +155,77 @@ def build_graph():
     graph.add_node("lead_agent", lead_agent)
     graph.add_node("escalation_agent", escalation_agent)
     graph.add_node("confirmation_agent", confirmation_agent)
-    graph.add_node("write_memory", write_memory)
 
-    graph.add_edge(START, "load_caller_context")
-    graph.add_edge("load_caller_context", "greet_and_route")
+    graph.add_edge(START, "greet_and_route")
 
     graph.add_conditional_edges(
         "greet_and_route",
         route_from_supervisor,
+        {
+            "business_info_agent": "business_info_agent",
+            "schedule_agent": "schedule_agent",
+            "modify_agent": "modify_agent",
+            "cancel_agent": "cancel_agent",
+            "lead_agent": "lead_agent",
+            "escalation_agent": "escalation_agent",
+            "confirmation_agent": "confirmation_agent",
+        },
     )
 
-    graph.add_conditional_edges("business_info_agent", should_go_to_confirmation)
-    graph.add_conditional_edges("schedule_agent", should_go_to_confirmation)
-    graph.add_conditional_edges("modify_agent", should_go_to_confirmation)
-    graph.add_conditional_edges("cancel_agent", should_go_to_confirmation)
-    graph.add_conditional_edges("lead_agent", should_go_to_confirmation)
-    graph.add_conditional_edges("escalation_agent", should_go_to_confirmation)
+    graph.add_conditional_edges(
+        "business_info_agent",
+        should_go_to_confirmation,
+        {
+            "confirmation_agent": "confirmation_agent",
+            "__end__": END,
+        },
+    )
 
-    graph.add_edge("confirmation_agent", "write_memory")
-    graph.add_edge("write_memory", END)
+    graph.add_conditional_edges(
+        "schedule_agent",
+        should_go_to_confirmation,
+        {
+            "confirmation_agent": "confirmation_agent",
+            "__end__": END,
+        },
+    )
+
+    graph.add_conditional_edges(
+        "modify_agent",
+        should_go_to_confirmation,
+        {
+            "confirmation_agent": "confirmation_agent",
+            "__end__": END,
+        },
+    )
+
+    graph.add_conditional_edges(
+        "cancel_agent",
+        should_go_to_confirmation,
+        {
+            "confirmation_agent": "confirmation_agent",
+            "__end__": END,
+        },
+    )
+
+    graph.add_conditional_edges(
+        "lead_agent",
+        should_go_to_confirmation,
+        {
+            "confirmation_agent": "confirmation_agent",
+            "__end__": END,
+        },
+    )
+
+    graph.add_conditional_edges(
+        "escalation_agent",
+        should_go_to_confirmation,
+        {
+            "confirmation_agent": "confirmation_agent",
+            "__end__": END,
+        },
+    )
+
+    graph.add_edge("confirmation_agent", END)
 
     return graph.compile()

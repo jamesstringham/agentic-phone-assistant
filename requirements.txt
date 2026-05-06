@@ -10,3 +10,4 @@ torchaudio
 numpy
 packaging
 langgraph
+chromadb
